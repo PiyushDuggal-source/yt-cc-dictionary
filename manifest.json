@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Caption Dictionary",
+  "version": "1.0.0",
+  "description": "Click on any word in YouTube captions to see its definition instantly",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*", "https://youtube.com/*"],
+      "js": ["api.js", "tooltip.js", "content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": ["activeTab"]
+}

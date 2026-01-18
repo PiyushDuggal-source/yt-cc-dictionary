@@ -1,0 +1,332 @@
+/**
+ * YouTube Caption Dictionary - Styles
+ * Clean glassmorphic captions and tooltip
+ */
+
+/* ============================================
+   Custom Caption Container
+   ============================================ */
+
+.yt-dict-caption-container {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99999;
+  
+  max-width: 85%;
+  padding: 12px 24px;
+  
+  /* Glassmorphic design */
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  
+  /* Enable interactions */
+  pointer-events: auto !important;
+  
+  /* Animation */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  
+  /* Typography */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.yt-dict-caption-container.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.yt-dict-caption-text {
+  display: inline;
+  pointer-events: auto !important;
+}
+
+/* ============================================
+   Clickable Words - Use different class name
+   ============================================ */
+
+.yt-dict-caption-word {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  border-radius: 3px;
+  transition: background-color 0.15s ease;
+  display: inline;
+}
+
+.yt-dict-caption-word:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.yt-dict-caption-word:active {
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+/* ============================================
+   Tooltip - Glassmorphic Design (matches caption container)
+   ============================================ */
+
+.yt-dict-tooltip {
+  position: fixed;
+  z-index: 2147483647;
+  width: 360px;
+  max-height: 420px;
+  overflow: hidden;
+  
+  /* Glassmorphic - matching caption container */
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  
+  /* Animation */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-100%) scale(0.95);
+  transition: 
+    opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+    visibility 0.25s ease, 
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  color: #fff;
+  line-height: 1.5;
+}
+
+.yt-dict-tooltip.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-100%) scale(1);
+}
+
+/* ============================================
+   Tooltip Header
+   ============================================ */
+
+.yt-dict-tooltip-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.yt-dict-word-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.yt-dict-tooltip .yt-dict-word {
+  font-size: 22px;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.yt-dict-phonetic {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.55);
+  font-style: italic;
+}
+
+.yt-dict-audio-btn {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 15px;
+  transition: all 0.2s ease;
+}
+
+.yt-dict-audio-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+}
+
+.yt-dict-close-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 18px;
+  transition: all 0.2s ease;
+}
+
+.yt-dict-close-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+/* ============================================
+   Tooltip Body
+   ============================================ */
+
+.yt-dict-tooltip-body {
+  padding: 16px 20px 20px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.yt-dict-tooltip-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.yt-dict-tooltip-body::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.yt-dict-tooltip-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.yt-dict-tooltip-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================
+   Loading State
+   ============================================ */
+
+.yt-dict-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px 0;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.yt-dict-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #6366f1;
+  border-radius: 50%;
+  animation: yt-dict-spin 0.7s linear infinite;
+}
+
+@keyframes yt-dict-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   Error State
+   ============================================ */
+
+.yt-dict-error {
+  text-align: center;
+  padding: 24px 0;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.yt-dict-error-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+/* ============================================
+   Definition Content
+   ============================================ */
+
+.yt-dict-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.yt-dict-meaning {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.yt-dict-pos {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #a5b4fc;
+  padding: 5px 12px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.15) 100%);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 6px;
+  align-self: flex-start;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.yt-dict-def-text {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.yt-dict-def-number {
+  color: rgba(255, 255, 255, 0.4);
+  margin-right: 6px;
+}
+
+.yt-dict-example {
+  margin: 8px 0 0;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid rgba(139, 92, 246, 0.5);
+  border-radius: 0 8px 8px 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+  font-style: italic;
+}
+
+.yt-dict-synonyms {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.yt-dict-synonyms strong {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.yt-dict-meaning + .yt-dict-meaning {
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
